@@ -59,7 +59,7 @@
     DESCRIBE PELICULA;
     
     CREATE TABLE HORARIO (ID_HORARIO integer, 
-    ID_PELICULAHORA integer,
+    ID_HORARIO integer,
     HORARIO varchar2(8),
     constraint PK_ID_HORARIO primary key (ID_HORARIO),
     CONSTRAINT FK1_ID_PELICULA FOREIGN KEY  (ID_PELICULA) REFERENCES PELICULA (ID_PELICULA)
@@ -71,6 +71,12 @@
     constraint PK_ID_SALA primary key (ID_SALA),
     constraint FK2_ID_PELICULA FOREIGN KEY  (ID_PELICULA) REFERENCES PELICULA (ID_PELICULA)
     );
+    
+    
+    CREATE sequence SEC_PELICULA
+    START WITH 1
+    INCREMENT BY 1
+    NOMAXVALUE;
     
     
     
