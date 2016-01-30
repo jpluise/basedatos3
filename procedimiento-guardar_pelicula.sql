@@ -68,3 +68,43 @@
     
     
     
+    
+    secuencias-------------------------------------------------------------------------------------------------
+    
+    CREATE OR REPLACE PROCEDURE GUARDAR_PELICULA 
+(
+  MY_ID_PELICULA OUT NUMBER  
+, MY_TITULO IN VARCHAR2  
+, MY_SINOPSIS IN VARCHAR2  
+, MY_CLASIFICACION IN VARCHAR2  
+) AS
+
+BEGIN
+  SELECT SEC_PELICULA.NEXTVAL INTO MY_ID_PELICULA FROM DUAL;
+  --DUAL UNA TALBA VIRTUAL
+  INSERT INTO PELICULA VALUES(MY_ID_PELICULA, MY_TITULO, MY_SINOPSIS, MY_CLASIFICACION);
+  
+END GUARDAR_PELICULA;
+
+--------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE SUMA 
+(
+  PRIMERO IN NUMBER  
+, SEGUNDO IN NUMBER  
+, RESULTADO OUT NUMBER  
+) AS 
+BEGIN
+RESULTADO:=PRIMERO+SEGUNDO;
+END SUMA;
+-------------------------------------------------------------------------------
+
+create or replace 
+PROCEDURE HOLA_MUNDO( NOMBRE  IN VARCHAR2)
+    --DECLARACION DE VARIABLES LOCALES
+    AS
+    --CUERPO DE BEGIN LOGICA
+    BEGIN
+    DBMS_OUTPUT.PUT_LINE('HOLA COM ESTAS'||NOMBRE);
+    END;
+    
+    
