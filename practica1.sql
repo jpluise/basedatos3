@@ -78,6 +78,23 @@
     INCREMENT BY 1
     NOMAXVALUE;
     
+    --------------------------10/02/2015--------------------------------
+    
+    create table paises ( id_pais varchar2 (4),
+                     nombre varchar2 (100),
+                     habitante integer,
+                     idioma varchar2 (40),
+                     constraint pk_id_pais primary key(id_pais)
+                     ); 
+
+insert into paises values ('mx', 'Mexico', 90000, 'español');
+insert into paises values ('usa', 'Estados Unidos', 12000000, 'ingles');
+insert into paises values ('jpa', 'Japon', 9000000, 'japones');
+insert into paises values ('ger', 'Alemania', 1400000, 'aleman');
+insert into paises values ('bra', 'Brazil', 2300000, 'portuges');
+
+select * from paises;
+
     
     
     
