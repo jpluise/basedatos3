@@ -95,7 +95,83 @@ insert into paises values ('bra', 'Brazil', 2300000, 'portuges');
 
 select * from paises;
 
+    ----------------------------------------------------------------------
     
+    create table paises ( id_pais varchar2 (4),
+                     nombre varchar2 (100),
+                     habitante integer,
+                     idioma varchar2 (40),
+                     constraint pk_id_pais primary key(id_pais)
+                     ); 
+
+insert into paises values ('mx', 'Mexico', 90000, 'español');
+insert into paises values ('usa', 'Estados Unidos', 12000000, 'ingles');
+insert into paises values ('jpa', 'Japon', 9000000, 'japones');
+insert into paises values ('ger', 'Alemania', 1400000, 'aleman');
+insert into paises values ('bra', 'Brazil', 2300000, 'portuges');
+
+select * from paises;
+
+
+declare
+  cursor cur_paises is select * from paises;
+
+total_habitantes integer;
+begin
+total_habitantes:=0;
+
+for fila in cur_paises loop
+total_habitantes:=total_habitantes+fila.habitante;
+dbms_output.put_line('Nombre: '||fila.nombre||' Habitantes: ' ||fila.habitante);
+end loop;
+dbms_output.put_line('Habitantes de todos los paises: '||total_habitantes);
+
+end;
+
+
+
+create table estudiante (id_estudiante integer,
+                         id_pais varchar2(4),
+                         carrera varchar2(30),
+                         edad integer,
+                         constraint pk_id_estudiante primary key(id_estudiante),
+                         constraint fk1_id_pais foreign key(id_pais) references paises(id_pais));
+
+
+describe estudiante;
+
+insert into estudiante values (1, 'mx', 'Sistemas ',20);
+insert into estudiante values (2, 'usa', 'Diseño ',22);
+insert into estudiante values (3, 'mx', 'Arquitectura ',20);
+insert into estudiante values (4, 'mx', 'Economia ',19);
+insert into estudiante values (5, 'jpa', 'Derecho ',21);
+insert into estudiante values (6, 'ger', 'Salud ',20);
+insert into estudiante values (7, 'bra', 'Sistemas ',23);
+
+select *from estudiante;
+
+-----terminar
+
+declare
+  cursor cur_estudinate is select * from estudiante;
+
+total_habitantes integer;
+begin
+total_habitantes:=0;
+for fila in cur_estudiante loop
+total_habitantes:=total_habitantes+fila.habitante;
+dbms_output.put_line('Nombre: '||fila.nombre||' Habitantes: ' ||fila.habitante||' carrera: ' ||fila.carrera);
+end loop;
+dbms_output.put_line('Habitantes de todos los paises: '||total_habitantes);
+
+end;
+
+
+
+
+
+
+
     
     
 
