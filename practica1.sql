@@ -166,7 +166,21 @@ dbms_output.put_line('Habitantes de todos los paises: '||total_habitantes);
 
 end;
 
+----------------17/02/2016--------------
 
+declare 
+
+cursor CUR_EMPLEADOS IS SELECT * FROM empleado_ventas;
+begin
+FOR REC_EMP IN CUR_EMPLEADOS LOOP
+dbms_output.put_LINE('NOMBRE:'||REC_EMP.nombre_cliente||'SUELDO:'||REC_EMP.SUELDO_BASE);
+end LOOP;
+END;
+/
+
+SELECT * FROM empleado_ventas;
+
+SET SERVEROUTPUT ON;
 
 
 
