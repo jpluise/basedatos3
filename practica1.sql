@@ -206,7 +206,50 @@ SET SERVEROUTPUT ON;
 SELECT EMPLEADO_VENTAS.ID_CLIENTE, EMPLEADO_VENTAS.NOMBRE_CLIENTE, SUCU5RSAL.NOMBRE FROM EMPLEADO_VENTAS JOIN SUCURSAL  ON EMPLEADO_VENTAS.ID_CLIENTE=SUCURSAL.ID_CLIENTE;
 
 
+-----------------------------------------27/02/2016----------------------------------
 
+--DISPARADORES
+--un obejto de base de datos que siempre se ejecuta  automatico es decir nunca se invoca manualmente y en este curso son de tipo DML(DATA MANIPULATION LANGUAJE)  INSERTAR, ACTUALIZAR SELECT, DELETE (SELECT ES DE SOLO LECTURA : JAMAS ESTA DEFINIDO EN EL DML)
+--DDL DATA DESCRIPTION LANGUAJE
+--Y LOS DISPARADORES DE TIPO DML SON LO SE APLICAN A LAS OPERACIONES SIGUIENTES INSERT, UPDATE, DELETE
+--DISPARADORES DDL Y DML(AUTOMATIZACION Y VALIDACION = PORTABILIDAD )
+--MVC
+--M TIENEN CAPAS PERSISTENCIA GUARDA (DISPARADORES), TRANSACIONAL
+--before generalmente esta son para vlidar
+--after generalmente son para automatizar
+--operaciones insert update delete
+create table xxx ( id_xxx integer,
+                  edad integer
+                  );
+                  
+create or replace trigger xxx_mayor_edad before  insert on xxx for each row --Examen la logica de un cursor
+begin 
+if :new.edad < 18 then
+raise_application_error(-20001, 'lo sineto chsmsco precoz, no registrado'); --logica personalizada de base de datos 
+end if;
+end;
+/
+           
+insert into xxx values(1,20);
+SELECT * FROM xxx;
+                
+--------------------------------------------------------------------------------------------------------------------------       
+                create table nomina_xxx (id_nomina_xxx integer,
+                                         login varchar2 (10), 
+                                         saldo integer );
+                                         
+insert into nomina_xxx values (1, 'yo', 20000);  
+SELECT * FROM nomina_xxx;
+
+--crear un disparador que personalize update, de tal manera que sume el saldo anterior al nuevo saldo y asignarle un update.
+create or replace trigger actualizar_saldo before update on nomina_xxx for each row 
+begin
+:new.saldo:=:new.saldo+:old.saldo;
+end;
+/
+ update nomina_xxx set saldo = 500 where id_nomina_xxx=1;  
+ update nomina_xxx set saldo = -500 where id_nomina_xxx=1;  
+                     
 
 
     
